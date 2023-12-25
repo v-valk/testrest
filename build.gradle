@@ -1,0 +1,78 @@
+plugins {
+    id 'java'
+    id 'io.qameta.allure' version '2.11.2'
+}
+
+group = 'ee.testrest'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+ext {
+    junitVersion = '5.10.0'
+    allureVersion = '2.24.0'
+    restAssuredVersion = '4.3.1'
+    slf4jVersion = '1.6.1'
+    aspectjVersion = '1.9.20.1'
+    configVersion = '1.4.1'
+    jacksonVersion = '2.13.0'
+    selenideVersion = '7.0.4'
+}
+
+configurations {
+    agent {
+        canBeResolved = true
+        canBeConsumed = true
+    }
+}
+
+dependencies {
+    agent "org.aspectj:aspectjweaver:$aspectjVersion"
+    agent "org.aspectj:aspectjweaver:$aspectjVersion"
+    testImplementation platform("io.qameta.allure:allure-bom:$allureVersion")
+    testImplementation "io.qameta.allure:allure-junit5"
+    testImplementation platform("io.qameta.allure:allure-bom:$allureVersion")
+    implementation "io.qameta.allure:allure-rest-assured:${allureVersion}"
+    implementation "io.qameta.allure:allure-selenide:${allureVersion}"
+
+    testImplementation platform("org.junit:junit-bom:$junitVersion")
+    testImplementation "org.junit.jupiter:junit-jupiter-api"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine"
+    testImplementation("org.junit.jupiter:junit-jupiter-params:${junitVersion}")
+
+    testImplementation "org.slf4j:slf4j-simple:2.0.9"
+    implementation "io.rest-assured:rest-assured:${restAssuredVersion}"
+    implementation "com.typesafe:config:${configVersion}"
+    implementation "com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}"
+    implementation "com.github.javafaker:javafaker:1.0.2"
+    implementation "com.google.code.gson:gson:2.10.1"
+
+    testImplementation "org.assertj:assertj-core:3.24.2"
+    implementation "com.codeborne:selenide-appium:${selenideVersion}"
+    implementation("com.codeborne:selenide-full-screenshot:${selenideVersion}")
+}
+
+allure {
+    version = "${allureVersion}"
+    aspectjweaver = true
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+    options.compilerArgs.add('-parameters')
+}
+
+test {
+    useJUnitPlatform()
+    ignoreFailures = true
+    jvmArgs = ["-javaagent:${configurations.agent.singleFile}"]
+}
+
