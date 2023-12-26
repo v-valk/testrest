@@ -101,30 +101,6 @@ public class UserTest extends UserController {
                 userStatus
         );
     }
-//    @Step("Prepare user details")
-//    private User prepareUserPayload() {
-//        var id = faker.number().numberBetween(1, 999);
-//        var username = faker.name().username();
-//        var firstname = faker.funnyName().name();
-//        var lastName = faker.name().lastName();
-//        var email = faker.internet().safeEmailAddress();
-//        var password = faker.internet().password();
-//        var phone = faker.phoneNumber().phoneNumber();
-//        var userStatus = faker.number().randomDigit();
-//        var user = new User()
-//                .withId(id)
-//                .withUsername(username)
-//                .withFirstName(firstname)
-//                .withLastName(lastName)
-//                .withEmail(email)
-//                .withPassword(password)
-//                .withPhone(phone)
-//                .withUserStatus(userStatus);
-//
-//        Allure.addAttachment("User", "text/plain", JsonUtil.toJson(user));
-//
-//        return user;
-//    }
 
     private void verifyUserNotFound(User user) {
         String response = getUser(user).body().jsonPath().get("message");
