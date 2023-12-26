@@ -16,11 +16,10 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 import static com.codeborne.selenide.appium.ScreenObject.screen;
 
-@Tag("iOS")
+@Tag("ios")
 @DisplayName("Mobile tests - Sauce Lab iOS app")
 @DisplayNameGeneration(ReplaceUnderscores.class)
 class SauceLabAppMobileTest extends MobileTestSetup {
-
 
     @ParameterizedTest
     @CsvSource({
