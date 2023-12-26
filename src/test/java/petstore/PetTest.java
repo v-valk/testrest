@@ -17,6 +17,7 @@ import static ee.testrest.util.FakeData.faker;
 import static java.util.Arrays.asList;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
+@org.junit.jupiter.api.Tag("api")
 @DisplayName("Pet Store Tests - Pet Controller")
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 public class PetTest extends PetController {
