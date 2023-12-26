@@ -35,8 +35,16 @@ appium
 
 2. Execute the following commands to run the tests and generate Allure reports:
 
+- Run all tests:
+
 ```bash
-./gradlew clean test allureServe
+./gradlew test allureServe
+```
+
+- Run specific tests by tags:
+
+```bash
+./gradlew test -DincludeTags=api allureServe
 ```
 
 ## How to open test results
