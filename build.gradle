@@ -36,7 +36,6 @@ configurations {
 
 dependencies {
     agent "org.aspectj:aspectjweaver:$aspectjVersion"
-    agent "org.aspectj:aspectjweaver:$aspectjVersion"
     testImplementation platform("io.qameta.allure:allure-bom:$allureVersion")
     testImplementation "io.qameta.allure:allure-junit5"
     testImplementation platform("io.qameta.allure:allure-bom:$allureVersion")
@@ -66,13 +65,26 @@ allure {
 }
 
 tasks.withType(JavaCompile).configureEach {
+    dependsOn(clean)
     options.encoding = 'UTF-8'
     options.compilerArgs.add('-parameters')
 }
 
-test {
-    useJUnitPlatform()
+tasks.withType(Test).configureEach {
+    useJUnitPlatform(platform -> {
+        String includeTags = System.getProperty("includeTags")
+        String excludeTags = System.getProperty("excludeTags")
+
+        if (includeTags != null) {
+            platform.includeTags(includeTags.split(","))
+        }
+
+        if (excludeTags != null) {
+            platform.excludeTags(excludeTags.split(","))
+        }
+    })
     ignoreFailures = true
     jvmArgs = ["-javaagent:${configurations.agent.singleFile}"]
 }
+
 
