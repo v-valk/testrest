@@ -16,13 +16,10 @@ public class HeaderContainer {
         headerContainer.shouldBe(visible);
         menuButton.shouldBe(visible);
         cartButton.shouldBe(visible);
-
     }
 
     private final SelenideElement headerContainer = element(byName("headerContainer"));
-
     private final SelenideElement menuButton = element(byName("test-Menu"));
-
     private final SelenideElement cartButton = element(byName("test-Cart"));
 
     @Step("Verify that the cart icon does not show items added")
@@ -36,14 +33,9 @@ public class HeaderContainer {
         return screen(new CartScreen().load());
     }
 
-
     @Step("Verify that the cart icon shows {numberOfItems} items added")
     public HeaderContainer assertHeaderCartIconShowsItemsAdded(int numberOfItems) {
         cartButton.shouldHave(attribute("label", String.valueOf(numberOfItems)));
         return this;
-    }
-
-    public void assertMenuButtonIsDisplayed() {
-        menuButton.shouldBe(visible);
     }
 }

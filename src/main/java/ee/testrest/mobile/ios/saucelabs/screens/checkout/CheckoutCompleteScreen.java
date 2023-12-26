@@ -1,14 +1,12 @@
 package ee.testrest.mobile.ios.saucelabs.screens.checkout;
 
 import com.codeborne.selenide.SelenideElement;
-import ee.testrest.mobile.ios.saucelabs.screens.product.ProductsScreen;
 import io.qameta.allure.Step;
 
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.byName;
 import static com.codeborne.selenide.Selenide.element;
 import static com.codeborne.selenide.appium.AppiumClickOptions.tap;
-import static com.codeborne.selenide.appium.ScreenObject.screen;
 
 public class CheckoutCompleteScreen {
     private final SelenideElement checkoutCompleteConfirmation = element(byName("test-CHECKOUT: COMPLETE!"));
