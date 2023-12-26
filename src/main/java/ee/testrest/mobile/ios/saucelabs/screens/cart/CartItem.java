@@ -7,7 +7,6 @@ import static com.codeborne.selenide.Condition.empty;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.byName;
 import static com.codeborne.selenide.Selenide.element;
-import static com.codeborne.selenide.appium.ScreenObject.screen;
 
 public class CartItem {
     public CartItem load() {
